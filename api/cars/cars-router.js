@@ -16,4 +16,13 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", checkCarId, async (req, res) => {
+  try {
+    let user = req.user;
+    res.status(200).json(user);
+  } catch (e) {
+    res.status(500).json({ message: "error getting car" });
+  }
+});
+
 module.exports = router;

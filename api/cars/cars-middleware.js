@@ -2,7 +2,11 @@ const Cars = require("./cars-model");
 
 const checkCarId = async (req, res, next) => {
   let { id } = req.params;
-  let user = await Cars.getById(id);
+  let [user] = await Cars.getById(id);
+
+  if (!user) {
+    res.status(404).json({ message: "account not found" });
+  }
 
   req.user = user;
   next();
