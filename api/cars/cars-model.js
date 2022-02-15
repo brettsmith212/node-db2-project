@@ -8,12 +8,9 @@ const getById = async (id) => {
   return await db("cars").where({ id });
 };
 
-const create = async (account) => {
-  let [id] = await db("accounts").insert(account);
-  return {
-    id,
-    account,
-  };
+const create = async (car) => {
+  let [id] = await db("cars").insert(car);
+  return getById(id);
 };
 
 module.exports = {
